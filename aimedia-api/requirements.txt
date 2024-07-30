@@ -1,0 +1,14 @@
+yacs
+openpyxl
+pymysql
+sqlalchemy
+ultralytics
+Flask
+flask_appbuilder
+waitress
+timedelta
+pybboxes
+deprecation
+simplejson
+setuptools
+pyyaml
