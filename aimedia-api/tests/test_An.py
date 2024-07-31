@@ -3,6 +3,12 @@ from ultralytics import YOLO
 
 
 class MyTestCase(unittest.TestCase):
+    def test_something(self):
+        result = 1 + 1.0
+        self.assertEqual(result, 2)
+
+
+class NewTestCase(unittest.TestCase):
     def test_detect_by_YOLO(self):
         model_path = 'yolov8n.pt'
         model = YOLO(model_path)
