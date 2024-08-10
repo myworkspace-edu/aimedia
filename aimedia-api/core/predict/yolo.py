@@ -23,7 +23,7 @@ class Predictor:
 
         # Perform detection using YOLOv8
         if image is None:
-            return None
+            return None, None
 
         results = self.model(image)
 
@@ -34,8 +34,8 @@ class Predictor:
         for result in results[0].boxes:
             x1, y1, x2, y2 = map(int, result.xyxy[0])#thuộc tính chứa tọa độ của bounding box dưới dạng [x1, y1, x2, y2]
             confidence = result.conf.item()#result.conf: accuracy , .item(): chuyển từ Tensor -> dang Python
-
             class_id = int(result.cls.item())# id_class 
+
             w = x2 - x1
             h = y2 - y1
             x_center = x1 + w / 2
@@ -63,13 +63,3 @@ class Predictor:
 
         return detected_objects, image
 
-
-predictor = Predictor('aimedia_api_model\yolov8n.pt')
-detected_objects, annotated_image = predictor.predict(r'core\predict\test_image.jpg', label_visible=True)
-if annotated_image is not None:
-    cv2.imshow('Annotated Image', annotated_image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-for obj in detected_objects:
-    print(obj)
